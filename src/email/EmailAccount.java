@@ -11,16 +11,19 @@ import java.util.ArrayList;
  */
 public class EmailAccount {
 
-    String correo;
+    String email;
     String contraseña;
     String usuario;
     ArrayList<Email> inbox;
 
     public EmailAccount(String correo, String contraseña, String usuario) {
-        this.correo = correo;
+        this.email = correo;
         this.contraseña = contraseña;
         this.usuario = usuario;
-        this.inbox = new ArrayList<>();
+        this.inbox = new ArrayList<>(100);
+        for(int i = 0; i < 100; i++){
+            inbox.add(null);
+        }
     }
 
     public String getUsuario() {
@@ -31,20 +34,27 @@ public class EmailAccount {
         return contraseña;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
     public boolean CuentasExistentes(String correo) {
-        return this.correo.equals(correo);
+        return this.email.equals(correo);
     }
 
     public void recibirEmail(Email email) {
-        inbox.add(email);
+     for (int i = 0; i < inbox.size(); i++) {
+            if (inbox.get(i) == null) {
+                inbox.set(i, email);
+                break;
+            } else if (i == inbox.size() - 1) {
+                System.out.println("Buzón LLeno");
+            }
+        }
     }
 
     public void printInbox() {
-        System.out.println("Correo: " + correo);
+        System.out.println("Correo: " + email);
         System.out.println("Usuario: " + usuario);
         for (int i = 0; i < inbox.size(); i++) {
             Email email = inbox.get(i);
