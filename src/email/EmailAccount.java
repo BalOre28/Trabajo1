@@ -42,15 +42,17 @@ public class EmailAccount {
         return this.email.equals(correo);
     }
 
-    public void recibirEmail(Email email) {
+    public boolean recibirEmail(Email email) {
      for (int i = 0; i < inbox.size(); i++) {
             if (inbox.get(i) == null) {
                 inbox.set(i, email);
                 break;
             } else if (i == inbox.size() - 1) {
                 System.out.println("Buzón LLeno");
+                return false;
             }
         }
+     return false;
     }
 
     public void printInbox() {
@@ -79,5 +81,6 @@ public class EmailAccount {
     public void borrarLeidos() {
         inbox.removeIf(Email::isLeido);
     }
+    
 
 }
