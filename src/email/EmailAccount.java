@@ -11,5 +11,37 @@ import java.util.ArrayList;
  */
 public class EmailAccount {
 
+    String correo;
+    String contraseña;
+    String usuario;
+    ArrayList<Email> inbox;
+
+    public EmailAccount(String correo, String contraseña, String usuario) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.usuario = usuario;
+        this.inbox = new ArrayList<>();
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public boolean CuentasExistentes(String correo) {
+        return this.correo.equals(correo);
+    }
+
+    public void recibirEmail(Email email) {
+        inbox.add(email);
+    }
+
    
 }
